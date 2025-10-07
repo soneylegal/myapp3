@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-export default function CadastroScreen() {
+export default function CadastroScreen({ onQuemSomos, onCadastroCompleto }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [escola, setEscola] = useState("");
@@ -21,9 +21,12 @@ export default function CadastroScreen() {
       return;
     }
     alert(
-      `Cadastro realizado!\nNome: ${nome}\nEmail: ${email}\nEscola: ${escola}`
+      `Cadastro realizado com sucesso!\nNome: ${nome}\nEmail: ${email}\nEscola: ${escola}`
     );
-    // Aqui você pode adicionar a lógica para salvar os dados
+    // Navegar para a landing page após o cadastro
+    if (onCadastroCompleto) {
+      onCadastroCompleto(nome);
+    }
   };
 
   return (
@@ -100,6 +103,13 @@ export default function CadastroScreen() {
 
           <Pressable style={styles.button} onPress={handleEnviar}>
             <Text style={styles.buttonText}>ENVIAR</Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.quemSomosButton}
+            onPress={onQuemSomos}
+          >
+            <Text style={styles.quemSomosText}>Quem nós somos?</Text>
           </Pressable>
         </View>
       </View>
@@ -228,5 +238,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     letterSpacing: 2,
+  },
+  quemSomosButton: {
+    marginTop: 20,
+    alignItems: "center",
+    paddingVertical: 10,
+  },
+  quemSomosText: {
+    color: "#00d4ff",
+    fontSize: 14,
+    textDecorationLine: "underline",
   },
 });

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -10,10 +11,34 @@ import {
 import MyButton from "./MyButton";
 import MyText from "./MyText";
 import CadastroScreen from "./CadastroScreen";
+import QuemSomosScreen from "./QuemSomosScreen";
+import LandingPage from "./LandingPage";
 
 export default function App() {
-  // Retorne a tela de cadastro
-  return <CadastroScreen />;
+  const [telaAtual, setTelaAtual] = useState("cadastro");
+  const [nomeUsuario, setNomeUsuario] = useState("");
+
+  // Navegação entre telas
+  if (telaAtual === "quemSomos") {
+    return (
+      <QuemSomosScreen onVoltar={() => setTelaAtual("cadastro")} />
+    );
+  }
+
+  if (telaAtual === "landing") {
+    return <LandingPage nomeUsuario={nomeUsuario} />;
+  }
+
+  // Tela de cadastro (login)
+  return (
+    <CadastroScreen
+      onQuemSomos={() => setTelaAtual("quemSomos")}
+      onCadastroCompleto={(nome) => {
+        setNomeUsuario(nome);
+        setTelaAtual("landing");
+      }}
+    />
+  );
   
   // Código antigo comentado - pode ser removido se não precisar mais
   /*
