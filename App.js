@@ -110,43 +110,6 @@ export default function App() {
     />
   );
   
-  // Código antigo comentado - pode ser removido se não precisar mais
-  /*
-  return (
-    <View style={styles.container}>
-      <Pressable onPress={() => alert("Imagem clicada!")}>
-        <Image
-          source={require("./assets/logo.webp")}
-          style={{ width: 400, height: 400 }}
-        />
-      </Pressable>
-
-      <Pressable
-        onPress={() => alert("Botão Personalizado clicado!")}
-        style={{
-          backgroundColor: "lightblue",
-          padding: 10,
-          borderRadius: 5,
-          marginBottom: 20,
-        }}
-      >
-        <Text>Meu Botão Personalizado!</Text>
-      </Pressable>
-
-      <MyText
-        text="Hello World!"
-        color="darkblue"
-        items={["Item 1", "Item 2"]}
-      />
-      <MyButton />
-      <TextInput
-        placeholder="Digite algo aqui..."
-        style={styles.input}
-      ></TextInput>
-      <StatusBar style="auto" />
-    </View>
-  );
-  */
 }
 
 const styles = StyleSheet.create({
@@ -157,7 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 20,
-    backgroundColor: "#fff", // Cor de fundo da caixa de texto
+    backgroundColor: "#fff",
     color: "#333", // Cor do texto digitado
     fontSize: 16,
   },
