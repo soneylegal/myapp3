@@ -69,7 +69,7 @@ export default function AcompanhamentoScreen({ onVoltar, nomeUsuario }) {
                 <Text style={styles.metricIcon}>📈</Text>
                 <Text style={styles.metricValue}>85%</Text>
                 <Text style={styles.metricLabel}>Taxa de Progresso</Text>
-              </View>
+              </View> 
 
               <View style={styles.metricCard}>
                 <Text style={styles.metricIcon}>⭐</Text>

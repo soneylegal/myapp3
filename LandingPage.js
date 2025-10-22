@@ -60,62 +60,6 @@ export default function LandingPage({ nomeUsuario, onExplorar }) {
           </View>
         </View>
 
-        {/* Cards de Funcionalidades */}
-        <View style={styles.featuresSection}>
-          <Text style={styles.sectionTitle}>COMECE AGORA</Text>
-          <View style={styles.divider} />
-
-          <View style={styles.featureGrid}>
-            <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}></Text>
-              <Text style={styles.featureTitle}>Minha Biblioteca</Text>
-              <Text style={styles.featureDescription}>
-                Acesse livros e materiais de leitura interativos
-              </Text>
-            </Pressable>
-
-            <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}></Text>
-              <Text style={styles.featureTitle}>Exercícios</Text>
-              <Text style={styles.featureDescription}>
-                Atividades personalizadas de escrita e alfabetização
-              </Text>
-            </Pressable>
-
-            <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}></Text>
-              <Text style={styles.featureTitle}>Jogos Educativos</Text>
-              <Text style={styles.featureDescription}>
-                Aprenda brincando com jogos divertidos
-              </Text>
-            </Pressable>
-
-            <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}></Text>
-              <Text style={styles.featureTitle}>Progresso</Text>
-              <Text style={styles.featureDescription}>
-                Acompanhe o desenvolvimento dos alunos
-              </Text>
-            </Pressable>
-
-            <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}></Text>
-              <Text style={styles.featureTitle}>Assistente IA</Text>
-              <Text style={styles.featureDescription}>
-                Converse com nosso assistente inteligente
-              </Text>
-            </Pressable>
-
-            <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}></Text>
-              <Text style={styles.featureTitle}>Minha Turma</Text>
-              <Text style={styles.featureDescription}>
-                Gerencie e acompanhe sua turma
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-
         {/* Seção de Recursos Destaque */}
         <View style={styles.highlightSection}>
           <Text style={styles.sectionTitle}>RECURSOS EM DESTAQUE</Text>
@@ -273,10 +217,6 @@ function createStyles(isMobile) {
       height: isMobile ? 210 : 280,
       zIndex: 2,
     },
-    featuresSection: {
-      padding: isMobile ? 20 : 40,
-      paddingTop: 20,
-    },
     sectionTitle: {
       color: "#ffffff",
       fontSize: isMobile ? 20 : 28,
@@ -289,45 +229,6 @@ function createStyles(isMobile) {
       backgroundColor: "#00d4ff",
       width: isMobile ? 60 : 80,
       marginBottom: isMobile ? 20 : 30,
-    },
-    featureGrid: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: isMobile ? "center" : "space-between",
-      gap: isMobile ? 15 : 20,
-    },
-    featureCard: {
-      backgroundColor: "rgba(255, 255, 255, 0.05)",
-      borderWidth: 2,
-      borderColor: "rgba(77, 77, 255, 0.3)",
-      borderRadius: 15,
-      padding: isMobile ? 20 : 25,
-      width: isMobile ? "100%" : "30%",
-      minWidth: isMobile ? undefined : 250,
-      maxWidth: isMobile ? 400 : undefined,
-      alignItems: "center",
-      shadowColor: "#4d4dff",
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.3,
-      shadowRadius: 10,
-    },
-    featureIcon: {
-      fontSize: isMobile ? 40 : 48,
-      marginBottom: 15,
-    },
-    featureTitle: {
-      color: "#ffffff",
-      fontSize: isMobile ? 16 : 18,
-      fontWeight: "bold",
-      marginBottom: 10,
-      textAlign: "center",
-    },
-    featureDescription: {
-      color: "#ffffff",
-      fontSize: isMobile ? 13 : 14,
-      textAlign: "center",
-      opacity: 0.8,
-      lineHeight: isMobile ? 18 : 20,
     },
     highlightSection: {
       padding: isMobile ? 20 : 40,
