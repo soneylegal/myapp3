@@ -6,10 +6,15 @@ import {
   Pressable,
   ScrollView,
   Image,
+  useWindowDimensions,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-export default function LandingPage({ nomeUsuario }) {
+export default function LandingPage({ nomeUsuario, onExplorar }) {
+  const { width } = useWindowDimensions();
+  const isMobile = width < 768;
+  const styles = createStyles(isMobile);
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -38,10 +43,15 @@ export default function LandingPage({ nomeUsuario }) {
         {/* Hero Section */}
         <View style={styles.heroSection}>
           <Text style={styles.welcomeMessage}>
-            Bem-vindo(a), {nomeUsuario || "Educador"}! 🎉
+            Bem-vindo(a), {nomeUsuario || "Educador"}! 
           </Text>
 
           <View style={styles.illustrationContainer}>
+            <Image
+              source={require("./assets/livros.png")}
+              style={styles.heroBooksImage}
+              resizeMode="contain"
+            />
             <Image
               source={require("./assets/robo.png")}
               style={styles.robotImage}
@@ -57,7 +67,7 @@ export default function LandingPage({ nomeUsuario }) {
 
           <View style={styles.featureGrid}>
             <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}>📚</Text>
+              <Text style={styles.featureIcon}></Text>
               <Text style={styles.featureTitle}>Minha Biblioteca</Text>
               <Text style={styles.featureDescription}>
                 Acesse livros e materiais de leitura interativos
@@ -65,7 +75,7 @@ export default function LandingPage({ nomeUsuario }) {
             </Pressable>
 
             <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}>✍️</Text>
+              <Text style={styles.featureIcon}></Text>
               <Text style={styles.featureTitle}>Exercícios</Text>
               <Text style={styles.featureDescription}>
                 Atividades personalizadas de escrita e alfabetização
@@ -73,7 +83,7 @@ export default function LandingPage({ nomeUsuario }) {
             </Pressable>
 
             <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}>🎮</Text>
+              <Text style={styles.featureIcon}></Text>
               <Text style={styles.featureTitle}>Jogos Educativos</Text>
               <Text style={styles.featureDescription}>
                 Aprenda brincando com jogos divertidos
@@ -81,7 +91,7 @@ export default function LandingPage({ nomeUsuario }) {
             </Pressable>
 
             <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}>📊</Text>
+              <Text style={styles.featureIcon}></Text>
               <Text style={styles.featureTitle}>Progresso</Text>
               <Text style={styles.featureDescription}>
                 Acompanhe o desenvolvimento dos alunos
@@ -89,7 +99,7 @@ export default function LandingPage({ nomeUsuario }) {
             </Pressable>
 
             <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}>🤖</Text>
+              <Text style={styles.featureIcon}></Text>
               <Text style={styles.featureTitle}>Assistente IA</Text>
               <Text style={styles.featureDescription}>
                 Converse com nosso assistente inteligente
@@ -97,7 +107,7 @@ export default function LandingPage({ nomeUsuario }) {
             </Pressable>
 
             <Pressable style={styles.featureCard}>
-              <Text style={styles.featureIcon}>👥</Text>
+              <Text style={styles.featureIcon}></Text>
               <Text style={styles.featureTitle}>Minha Turma</Text>
               <Text style={styles.featureDescription}>
                 Gerencie e acompanhe sua turma
@@ -145,7 +155,7 @@ export default function LandingPage({ nomeUsuario }) {
                 <Text style={styles.highlightButtonText}>VER RELATÓRIOS</Text>
               </Pressable>
             </View>
-            <Text style={styles.highlightImagePlaceholder}>📊</Text>
+            <Text style={styles.highlightImagePlaceholder}></Text>
           </View>
         </View>
 
@@ -157,7 +167,7 @@ export default function LandingPage({ nomeUsuario }) {
           <Text style={styles.ctaDescription}>
             Explore todos os recursos e comece a usar o Alfabetiza+ hoje mesmo!
           </Text>
-          <Pressable style={styles.ctaButton}>
+          <Pressable style={styles.ctaButton} onPress={onExplorar}>
             <Text style={styles.ctaButtonText}>EXPLORAR PLATAFORMA</Text>
           </Pressable>
         </View>
@@ -165,7 +175,7 @@ export default function LandingPage({ nomeUsuario }) {
         {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            © 2025 Alfabetiza+ | Transformando a educação com tecnologia
+             2025 Alfabetiza+ | Transformando a educação com tecnologia
           </Text>
         </View>
       </ScrollView>
@@ -173,250 +183,268 @@ export default function LandingPage({ nomeUsuario }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#0a0a2e",
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 40,
-  },
-  header: {
-    padding: 20,
-    paddingTop: 40,
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(255, 255, 255, 0.1)",
-    alignItems: "center",
-  },
-  brandText: {
-    fontSize: 36,
-    fontWeight: "bold",
-    letterSpacing: 1,
-  },
-  plus: {
-    color: "#00ff00",
-  },
-  heroSection: {
-    padding: 40,
-    alignItems: "center",
-  },
-  welcomeMessage: {
-    color: "#ffffff",
-    fontSize: 32,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 10,
-  },
-  heroSubtitle: {
-    color: "#00d4ff",
-    fontSize: 18,
-    textAlign: "center",
-    marginBottom: 30,
-  },
-  letraA: {
-    color: "#ff4757",
-  },
-  letraL: {
-    color: "#ff6348",
-  },
-  letraF: {
-    color: "#ffa502",
-  },
-  letraA2: {
-    color: "#fffa65",
-  },
-  letraB: {
-    color: "#1e90ff",
-  },
-  letraE: {
-    color: "#00d4ff",
-  },
-  letraT: {
-    color: "#5f27cd",
-  },
-  letraI: {
-    color: "#ff00ff",
-  },
-  letraZ: {
-    color: "#ff69b4",
-  },
-  letraA3: {
-    color: "#00ff00",
-  },
-  illustrationContainer: {
-    alignItems: "center",
-    marginTop: 20,
-  },
-  robotImage: {
-    width: 200,
-    height: 200,
-  },
-  featuresSection: {
-    padding: 40,
-    paddingTop: 20,
-  },
-  sectionTitle: {
-    color: "#ffffff",
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 15,
-    letterSpacing: 2,
-  },
-  divider: {
-    height: 3,
-    backgroundColor: "#00d4ff",
-    width: 80,
-    marginBottom: 30,
-  },
-  featureGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: 20,
-  },
-  featureCard: {
-    backgroundColor: "rgba(255, 255, 255, 0.05)",
-    borderWidth: 2,
-    borderColor: "rgba(77, 77, 255, 0.3)",
-    borderRadius: 15,
-    padding: 25,
-    width: "30%",
-    minWidth: 250,
-    alignItems: "center",
-    shadowColor: "#4d4dff",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-  },
-  featureIcon: {
-    fontSize: 48,
-    marginBottom: 15,
-  },
-  featureTitle: {
-    color: "#ffffff",
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-    textAlign: "center",
-  },
-  featureDescription: {
-    color: "#ffffff",
-    fontSize: 14,
-    textAlign: "center",
-    opacity: 0.8,
-    lineHeight: 20,
-  },
-  highlightSection: {
-    padding: 40,
-    paddingTop: 20,
-  },
-  highlightCard: {
-    flexDirection: "row",
-    backgroundColor: "rgba(255, 255, 255, 0.05)",
-    borderWidth: 2,
-    borderColor: "#00d4ff",
-    borderRadius: 20,
-    padding: 30,
-    marginBottom: 30,
-    alignItems: "center",
-    gap: 30,
-  },
-  highlightCardReverse: {
-    flexDirection: "row-reverse",
-  },
-  highlightImage: {
-    width: 150,
-    height: 150,
-  },
-  highlightImagePlaceholder: {
-    fontSize: 120,
-    opacity: 0.8,
-  },
-  highlightContent: {
-    flex: 1,
-  },
-  highlightTitle: {
-    color: "#ffffff",
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 15,
-  },
-  highlightDescription: {
-    color: "#ffffff",
-    fontSize: 16,
-    lineHeight: 24,
-    opacity: 0.9,
-    marginBottom: 20,
-  },
-  highlightButton: {
-    backgroundColor: "#00d4ff",
-    borderRadius: 25,
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    alignSelf: "flex-start",
-    shadowColor: "#00d4ff",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-  },
-  highlightButtonText: {
-    color: "#0a0a2e",
-    fontSize: 14,
-    fontWeight: "bold",
-    letterSpacing: 1,
-  },
-  ctaSection: {
-    padding: 40,
-    alignItems: "center",
-    backgroundColor: "rgba(0, 212, 255, 0.1)",
-    marginHorizontal: 40,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: "#00d4ff",
-  },
-  ctaTitle: {
-    color: "#ffffff",
-    fontSize: 28,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 15,
-  },
-  ctaDescription: {
-    color: "#ffffff",
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 25,
-    opacity: 0.9,
-  },
-  ctaButton: {
-    backgroundColor: "#00d4ff",
-    borderRadius: 25,
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    shadowColor: "#00d4ff",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-  },
-  ctaButtonText: {
-    color: "#0a0a2e",
-    fontSize: 16,
-    fontWeight: "bold",
-    letterSpacing: 2,
-  },
-  footer: {
-    padding: 40,
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderTopColor: "rgba(255, 255, 255, 0.1)",
-    marginTop: 40,
-  },
-  footerText: {
-    color: "#ffffff",
-    fontSize: 14,
-    opacity: 0.6,
-  },
-});
+function createStyles(isMobile) {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#0a0a2e",
+    },
+    scrollView: {
+      flex: 1,
+    },
+    scrollContent: {
+      paddingBottom: isMobile ? 20 : 40,
+    },
+    header: {
+      padding: isMobile ? 15 : 20,
+      paddingTop: isMobile ? 50 : 40,
+      borderBottomWidth: 1,
+      borderBottomColor: "rgba(255, 255, 255, 0.1)",
+      alignItems: "center",
+    },
+    brandText: {
+      fontSize: isMobile ? 24 : 36,
+      fontWeight: "bold",
+      letterSpacing: 1,
+    },
+    letraA: {
+      color: "#FF3B5C",
+    },
+    letraL: {
+      color: "#FF8A3D",
+    },
+    letraF: {
+      color: "#FFD23F",
+    },
+    letraA2: {
+      color: "#2DD4BF",
+    },
+    letraB: {
+      color: "#3A86FF",
+    },
+    letraE: {
+      color: "#845EF7",
+    },
+    letraT: {
+      color: "#FF006E",
+    },
+    letraI: {
+      color: "#06D6A0",
+    },
+    letraZ: {
+      color: "#FF9F1C",
+    },
+    letraA3: {
+      color: "#2ECC71",
+    },
+    plus: {
+      color: "#00F0FF",
+    },
+    heroSection: {
+      padding: isMobile ? 20 : 40,
+      alignItems: "center",
+    },
+    welcomeMessage: {
+      color: "#ffffff",
+      fontSize: isMobile ? 22 : 32,
+      fontWeight: "bold",
+      textAlign: "center",
+      marginBottom: 10,
+      paddingHorizontal: isMobile ? 10 : 0,
+    },
+    illustrationContainer: {
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: isMobile ? 10 : 20,
+      width: isMobile ? 220 : 300,
+      height: isMobile ? 220 : 300,
+      position: "relative",
+    },
+    heroBooksImage: {
+      position: "absolute",
+      width: isMobile ? 200 : 260,
+      height: isMobile ? 200 : 260,
+      opacity: 0.9,
+      transform: [{ rotate: "-6deg" }],
+      zIndex: 1,
+    },
+    robotImage: {
+      width: isMobile ? 190 : 260,
+      height: isMobile ? 210 : 280,
+      zIndex: 2,
+    },
+    featuresSection: {
+      padding: isMobile ? 20 : 40,
+      paddingTop: 20,
+    },
+    sectionTitle: {
+      color: "#ffffff",
+      fontSize: isMobile ? 20 : 28,
+      fontWeight: "bold",
+      marginBottom: 15,
+      letterSpacing: 2,
+    },
+    divider: {
+      height: 3,
+      backgroundColor: "#00d4ff",
+      width: isMobile ? 60 : 80,
+      marginBottom: isMobile ? 20 : 30,
+    },
+    featureGrid: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: isMobile ? "center" : "space-between",
+      gap: isMobile ? 15 : 20,
+    },
+    featureCard: {
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      borderWidth: 2,
+      borderColor: "rgba(77, 77, 255, 0.3)",
+      borderRadius: 15,
+      padding: isMobile ? 20 : 25,
+      width: isMobile ? "100%" : "30%",
+      minWidth: isMobile ? undefined : 250,
+      maxWidth: isMobile ? 400 : undefined,
+      alignItems: "center",
+      shadowColor: "#4d4dff",
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 10,
+    },
+    featureIcon: {
+      fontSize: isMobile ? 40 : 48,
+      marginBottom: 15,
+    },
+    featureTitle: {
+      color: "#ffffff",
+      fontSize: isMobile ? 16 : 18,
+      fontWeight: "bold",
+      marginBottom: 10,
+      textAlign: "center",
+    },
+    featureDescription: {
+      color: "#ffffff",
+      fontSize: isMobile ? 13 : 14,
+      textAlign: "center",
+      opacity: 0.8,
+      lineHeight: isMobile ? 18 : 20,
+    },
+    highlightSection: {
+      padding: isMobile ? 20 : 40,
+      paddingTop: 20,
+    },
+    highlightCard: {
+      flexDirection: isMobile ? "column" : "row",
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      borderWidth: 2,
+      borderColor: "#00d4ff",
+      borderRadius: 20,
+      padding: isMobile ? 20 : 30,
+      marginBottom: isMobile ? 20 : 30,
+      alignItems: "center",
+      gap: isMobile ? 20 : 30,
+    },
+    highlightCardReverse: {
+      flexDirection: isMobile ? "column" : "row-reverse",
+    },
+    highlightImage: {
+      width: isMobile ? 120 : 150,
+      height: isMobile ? 120 : 150,
+    },
+    highlightImagePlaceholder: {
+      fontSize: isMobile ? 80 : 120,
+      opacity: 0.8,
+    },
+    highlightContent: {
+      flex: 1,
+      width: isMobile ? "100%" : undefined,
+    },
+    highlightTitle: {
+      color: "#ffffff",
+      fontSize: isMobile ? 20 : 24,
+      fontWeight: "bold",
+      marginBottom: 15,
+      textAlign: isMobile ? "center" : "left",
+    },
+    highlightDescription: {
+      color: "#ffffff",
+      fontSize: isMobile ? 14 : 16,
+      lineHeight: isMobile ? 20 : 24,
+      opacity: 0.9,
+      marginBottom: 20,
+      textAlign: isMobile ? "center" : "left",
+    },
+    highlightButton: {
+      backgroundColor: "#00d4ff",
+      borderRadius: 25,
+      paddingVertical: isMobile ? 10 : 12,
+      paddingHorizontal: isMobile ? 20 : 25,
+      alignSelf: isMobile ? "center" : "flex-start",
+      shadowColor: "#00d4ff",
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.5,
+      shadowRadius: 10,
+    },
+    highlightButtonText: {
+      color: "#0a0a2e",
+      fontSize: isMobile ? 12 : 14,
+      fontWeight: "bold",
+      letterSpacing: 1,
+    },
+    ctaSection: {
+      padding: isMobile ? 25 : 40,
+      alignItems: "center",
+      backgroundColor: "rgba(0, 212, 255, 0.1)",
+      marginHorizontal: isMobile ? 20 : 40,
+      borderRadius: 20,
+      borderWidth: 2,
+      borderColor: "#00d4ff",
+    },
+    ctaTitle: {
+      color: "#ffffff",
+      fontSize: isMobile ? 22 : 28,
+      fontWeight: "bold",
+      textAlign: "center",
+      marginBottom: 15,
+      paddingHorizontal: isMobile ? 10 : 0,
+    },
+    ctaDescription: {
+      color: "#ffffff",
+      fontSize: isMobile ? 14 : 16,
+      textAlign: "center",
+      marginBottom: 25,
+      opacity: 0.9,
+      paddingHorizontal: isMobile ? 10 : 0,
+    },
+    ctaButton: {
+      backgroundColor: "#00d4ff",
+      borderRadius: 25,
+      paddingVertical: isMobile ? 12 : 15,
+      paddingHorizontal: isMobile ? 30 : 40,
+      shadowColor: "#00d4ff",
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.5,
+      shadowRadius: 10,
+    },
+    ctaButtonText: {
+      color: "#0a0a2e",
+      fontSize: isMobile ? 14 : 16,
+      fontWeight: "bold",
+      letterSpacing: 2,
+    },
+    footer: {
+      padding: isMobile ? 20 : 40,
+      alignItems: "center",
+      borderTopWidth: 1,
+      borderTopColor: "rgba(255, 255, 255, 0.1)",
+      marginTop: isMobile ? 20 : 40,
+    },
+    footerText: {
+      color: "#ffffff",
+      fontSize: isMobile ? 12 : 14,
+      opacity: 0.6,
+      textAlign: "center",
+      paddingHorizontal: isMobile ? 10 : 0,
+    },
+  });
+}

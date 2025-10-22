@@ -6,10 +6,15 @@ import {
   Pressable,
   ScrollView,
   Image,
+  useWindowDimensions,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 export default function QuemSomosScreen({ onVoltar }) {
+  const { width } = useWindowDimensions();
+  const isMobile = width < 768;
+  const styles = createStyles(isMobile);
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -25,10 +30,16 @@ export default function QuemSomosScreen({ onVoltar }) {
           </Pressable>
 
           <Text style={styles.brandText}>
-            <Text style={styles.alfa}>ALFA</Text>
-            <Text style={styles.bet}>BET</Text>
-            <Text style={styles.iz}>IZ</Text>
-            <Text style={styles.a}>A</Text>
+            <Text style={styles.letraA}>A</Text>
+            <Text style={styles.letraL}>L</Text>
+            <Text style={styles.letraF}>F</Text>
+            <Text style={styles.letraA2}>A</Text>
+            <Text style={styles.letraB}>B</Text>
+            <Text style={styles.letraE}>E</Text>
+            <Text style={styles.letraT}>T</Text>
+            <Text style={styles.letraI}>I</Text>
+            <Text style={styles.letraZ}>Z</Text>
+            <Text style={styles.letraA3}>A</Text>
             <Text style={styles.plus}>+</Text>
           </Text>
         </View>
@@ -174,7 +185,8 @@ export default function QuemSomosScreen({ onVoltar }) {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(isMobile) {
+  return StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#0a0a2e",
@@ -183,79 +195,97 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 40,
+    paddingBottom: isMobile ? 20 : 40,
   },
   header: {
-    padding: 20,
-    paddingTop: 40,
+    padding: isMobile ? 15 : 20,
+    paddingTop: isMobile ? 50 : 40,
     borderBottomWidth: 1,
     borderBottomColor: "rgba(255, 255, 255, 0.1)",
   },
   voltarButton: {
-    marginBottom: 20,
+    marginBottom: isMobile ? 15 : 20,
     padding: 10,
     alignSelf: "flex-start",
   },
   voltarText: {
     color: "#00d4ff",
-    fontSize: 16,
+    fontSize: isMobile ? 14 : 16,
     fontWeight: "600",
   },
   brandText: {
-    fontSize: 36,
+    fontSize: isMobile ? 24 : 36,
     fontWeight: "bold",
     letterSpacing: 1,
     textAlign: "center",
   },
-  alfa: {
-    color: "#ffffff",
+  letraA: {
+    color: "#FF3B5C",
   },
-  bet: {
-    color: "#00d4ff",
+  letraL: {
+    color: "#FF8A3D",
   },
-  iz: {
-    color: "#ff00ff",
+  letraF: {
+    color: "#FFD23F",
   },
-  a: {
-    color: "#ffff00",
+  letraA2: {
+    color: "#2DD4BF",
+  },
+  letraB: {
+    color: "#3A86FF",
+  },
+  letraE: {
+    color: "#845EF7",
+  },
+  letraT: {
+    color: "#FF006E",
+  },
+  letraI: {
+    color: "#06D6A0",
+  },
+  letraZ: {
+    color: "#FF9F1C",
+  },
+  letraA3: {
+    color: "#2ECC71",
   },
   plus: {
-    color: "#00ff00",
+    color: "#00F0FF",
   },
   content: {
-    padding: 20,
-    paddingHorizontal: 40,
+    padding: isMobile ? 15 : 20,
+    paddingHorizontal: isMobile ? 20 : 40,
     maxWidth: 1200,
     alignSelf: "center",
     width: "100%",
   },
   section: {
-    marginBottom: 40,
+    marginBottom: isMobile ? 30 : 40,
   },
   title: {
     color: "#ffffff",
-    fontSize: 32,
+    fontSize: isMobile ? 24 : 32,
     fontWeight: "bold",
-    marginBottom: 15,
-    letterSpacing: 2,
+    marginBottom: isMobile ? 12 : 15,
+    letterSpacing: isMobile ? 1 : 2,
   },
   subtitle: {
     color: "#00d4ff",
-    fontSize: 24,
+    fontSize: isMobile ? 20 : 24,
     fontWeight: "bold",
-    marginBottom: 15,
+    marginBottom: isMobile ? 12 : 15,
     letterSpacing: 1,
   },
   divider: {
     height: 3,
     backgroundColor: "#00d4ff",
-    width: 80,
-    marginBottom: 20,
+    width: isMobile ? 60 : 80,
+    marginBottom: isMobile ? 15 : 20,
   },
   description: {
     color: "#ffffff",
-    fontSize: 16,
-    lineHeight: 26,
+    fontSize: isMobile ? 14 : 16,
+    lineHeight: isMobile ? 22 : 26,
     opacity: 0.9,
   },
   highlight: {
@@ -268,42 +298,43 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(77, 77, 255, 0.3)",
     borderRadius: 15,
-    padding: 20,
-    marginBottom: 20,
+    padding: isMobile ? 15 : 20,
+    marginBottom: isMobile ? 15 : 20,
     shadowColor: "#4d4dff",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
   },
   iconContainer: {
-    marginRight: 20,
+    marginRight: isMobile ? 12 : 20,
     justifyContent: "flex-start",
     paddingTop: 5,
   },
   icon: {
-    fontSize: 32,
+    fontSize: isMobile ? 28 : 32,
   },
   serviceContent: {
     flex: 1,
   },
   serviceName: {
     color: "#ffffff",
-    fontSize: 18,
+    fontSize: isMobile ? 16 : 18,
     fontWeight: "bold",
-    marginBottom: 8,
+    marginBottom: isMobile ? 6 : 8,
   },
   serviceDescription: {
     color: "#ffffff",
-    fontSize: 14,
-    lineHeight: 22,
+    fontSize: isMobile ? 13 : 14,
+    lineHeight: isMobile ? 20 : 22,
     opacity: 0.8,
   },
   illustrationContainer: {
     alignItems: "center",
-    marginTop: 20,
+    marginTop: isMobile ? 15 : 20,
   },
   robotImage: {
-    width: 200,
-    height: 200,
+    width: isMobile ? 150 : 200,
+    height: isMobile ? 150 : 200,
   },
-});
+  });
+}

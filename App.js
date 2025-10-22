@@ -13,6 +13,7 @@ import MyText from "./MyText";
 import CadastroScreen from "./CadastroScreen";
 import QuemSomosScreen from "./QuemSomosScreen";
 import LandingPage from "./LandingPage";
+import ExplorarPlataformaScreen from "./ExplorarPlataformaScreen";
 
 export default function App() {
   const [telaAtual, setTelaAtual] = useState("cadastro");
@@ -25,8 +26,22 @@ export default function App() {
     );
   }
 
+  if (telaAtual === "explorar") {
+    return (
+      <ExplorarPlataformaScreen 
+        nomeUsuario={nomeUsuario}
+        onVoltar={() => setTelaAtual("landing")} 
+      />
+    );
+  }
+
   if (telaAtual === "landing") {
-    return <LandingPage nomeUsuario={nomeUsuario} />;
+    return (
+      <LandingPage 
+        nomeUsuario={nomeUsuario} 
+        onExplorar={() => setTelaAtual("explorar")}
+      />
+    );
   }
 
   // Tela de cadastro (login)
