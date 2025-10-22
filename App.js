@@ -14,6 +14,11 @@ import CadastroScreen from "./CadastroScreen";
 import QuemSomosScreen from "./QuemSomosScreen";
 import LandingPage from "./LandingPage";
 import ExplorarPlataformaScreen from "./ExplorarPlataformaScreen";
+import BibliotecaScreen from "./BibliotecaScreen";
+import AtividadesScreen from "./AtividadesScreen";
+import JogosScreen from "./JogosScreen";
+import AcompanhamentoScreen from "./AcompanhamentoScreen";
+import AssistenteIAScreen from "./AssistenteIAScreen";
 
 export default function App() {
   const [telaAtual, setTelaAtual] = useState("cadastro");
@@ -26,11 +31,61 @@ export default function App() {
     );
   }
 
+  if (telaAtual === "biblioteca") {
+    return (
+      <BibliotecaScreen 
+        nomeUsuario={nomeUsuario}
+        onVoltar={() => setTelaAtual("explorar")} 
+      />
+    );
+  }
+
+  if (telaAtual === "atividades") {
+    return (
+      <AtividadesScreen 
+        nomeUsuario={nomeUsuario}
+        onVoltar={() => setTelaAtual("explorar")} 
+      />
+    );
+  }
+
+  if (telaAtual === "jogos") {
+    return (
+      <JogosScreen 
+        nomeUsuario={nomeUsuario}
+        onVoltar={() => setTelaAtual("explorar")} 
+      />
+    );
+  }
+
+  if (telaAtual === "acompanhamento") {
+    return (
+      <AcompanhamentoScreen 
+        nomeUsuario={nomeUsuario}
+        onVoltar={() => setTelaAtual("explorar")} 
+      />
+    );
+  }
+
+  if (telaAtual === "assistenteIA") {
+    return (
+      <AssistenteIAScreen 
+        nomeUsuario={nomeUsuario}
+        onVoltar={() => setTelaAtual("explorar")} 
+      />
+    );
+  }
+
   if (telaAtual === "explorar") {
     return (
       <ExplorarPlataformaScreen 
         nomeUsuario={nomeUsuario}
-        onVoltar={() => setTelaAtual("landing")} 
+        onVoltar={() => setTelaAtual("landing")}
+        onBiblioteca={() => setTelaAtual("biblioteca")}
+        onAtividades={() => setTelaAtual("atividades")}
+        onJogos={() => setTelaAtual("jogos")}
+        onAcompanhamento={() => setTelaAtual("acompanhamento")}
+        onAssistenteIA={() => setTelaAtual("assistenteIA")}
       />
     );
   }

@@ -5,15 +5,55 @@ import {
   Text,
   Pressable,
   ScrollView,
-  Image,
   useWindowDimensions,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-export default function ExplorarPlataformaScreen({ onVoltar, nomeUsuario }) {
+export default function ExplorarPlataformaScreen({ 
+  onVoltar, 
+  nomeUsuario,
+  onBiblioteca,
+  onAtividades,
+  onJogos,
+  onAcompanhamento,
+  onAssistenteIA,
+}) {
   const { width } = useWindowDimensions();
   const isMobile = width < 768;
   const styles = createStyles(isMobile);
+
+  const menuItems = [
+    {
+      title: "📚 BIBLIOTECA DIGITAL",
+      description: "Acesse livros digitais, audiolivros e materiais didáticos",
+      color: "#FF3B5C",
+      onPress: onBiblioteca,
+    },
+    {
+      title: "✏️ ATIVIDADES INTERATIVAS",
+      description: "Exercícios personalizados e planos de aula",
+      color: "#FFD23F",
+      onPress: onAtividades,
+    },
+    {
+      title: "🎮 JOGOS EDUCATIVOS",
+      description: "Aprenda brincando com jogos pedagógicos",
+      color: "#2DD4BF",
+      onPress: onJogos,
+    },
+    {
+      title: "📊 ACOMPANHAMENTO",
+      description: "Monitore o progresso e gere relatórios",
+      color: "#845EF7",
+      onPress: onAcompanhamento,
+    },
+    {
+      title: "🤖 ASSISTENTE IA",
+      description: "Tire dúvidas e receba sugestões personalizadas",
+      color: "#3A86FF",
+      onPress: onAssistenteIA,
+    },
+  ];
 
   return (
     <View style={styles.container}>
@@ -50,159 +90,23 @@ export default function ExplorarPlataformaScreen({ onVoltar, nomeUsuario }) {
             <Text style={styles.title}>EXPLORE A PLATAFORMA</Text>
             <View style={styles.divider} />
             <Text style={styles.subtitle}>
-              Olá, {nomeUsuario || "Educador"}! Descubra todas as ferramentas disponíveis
+              Olá, {nomeUsuario || "Educador"}! Escolha uma seção para começar
             </Text>
           </View>
 
-          {/* Seção de Ferramentas */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>📚 BIBLIOTECA DIGITAL</Text>
-            <View style={styles.toolCard}>
-              <View style={styles.toolIconContainer}>
-                <Text style={styles.toolIcon}>📖</Text>
-              </View>
-              <View style={styles.toolContent}>
-                <Text style={styles.toolName}>Acervo Completo</Text>
-                <Text style={styles.toolDescription}>
-                  Mais de 500 livros digitais organizados por nível de leitura e tema
-                </Text>
-                <Pressable style={styles.toolButton}>
-                  <Text style={styles.toolButtonText}>ACESSAR AGORA</Text>
-                </Pressable>
-              </View>
-            </View>
-
-            <View style={styles.toolCard}>
-              <View style={styles.toolIconContainer}>
-                <Text style={styles.toolIcon}>🎧</Text>
-              </View>
-              <View style={styles.toolContent}>
-                <Text style={styles.toolName}>Leitura com Áudio</Text>
-                <Text style={styles.toolDescription}>
-                  Audiobooks narrados profissionalmente para apoiar o aprendizado
-                </Text>
-                <Pressable style={styles.toolButton}>
-                  <Text style={styles.toolButtonText}>COMEÇAR</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-
-          {/* Seção de Atividades */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>✍️ ATIVIDADES INTERATIVAS</Text>
-            <View style={styles.toolCard}>
-              <View style={styles.toolIconContainer}>
-                <Text style={styles.toolIcon}>🔤</Text>
-              </View>
-              <View style={styles.toolContent}>
-                <Text style={styles.toolName}>Reconhecimento de Letras</Text>
-                <Text style={styles.toolDescription}>
-                  Exercícios personalizados para aprender o alfabeto
-                </Text>
-                <Pressable style={styles.toolButton}>
-                  <Text style={styles.toolButtonText}>PRATICAR</Text>
-                </Pressable>
-              </View>
-            </View>
-
-            <View style={styles.toolCard}>
-              <View style={styles.toolIconContainer}>
-                <Text style={styles.toolIcon}>✏️</Text>
-              </View>
-              <View style={styles.toolContent}>
-                <Text style={styles.toolName}>Escrita Criativa</Text>
-                <Text style={styles.toolDescription}>
-                  Atividades de escrita com correção automática da IA
-                </Text>
-                <Pressable style={styles.toolButton}>
-                  <Text style={styles.toolButtonText}>ESCREVER</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-
-          {/* Seção de Jogos */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>🎮 JOGOS EDUCATIVOS</Text>
-            <View style={styles.gamesGrid}>
-              <View style={styles.gameCard}>
-                <Text style={styles.gameIcon}>🎯</Text>
-                <Text style={styles.gameName}>Caça Palavras</Text>
-                <Text style={styles.gameLevel}>Nível: Iniciante</Text>
-              </View>
-
-              <View style={styles.gameCard}>
-                <Text style={styles.gameIcon}>🧩</Text>
-                <Text style={styles.gameName}>Quebra-Cabeça de Sílabas</Text>
-                <Text style={styles.gameLevel}>Nível: Intermediário</Text>
-              </View>
-
-              <View style={styles.gameCard}>
-                <Text style={styles.gameIcon}>🎪</Text>
-                <Text style={styles.gameName}>Teatro de Histórias</Text>
-                <Text style={styles.gameLevel}>Nível: Avançado</Text>
-              </View>
-
-              <View style={styles.gameCard}>
-                <Text style={styles.gameIcon}>🎨</Text>
-                <Text style={styles.gameName}>Desenhar e Escrever</Text>
-                <Text style={styles.gameLevel}>Nível: Todos</Text>
-              </View>
-            </View>
-          </View>
-
-          {/* Seção de Relatórios */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>📊 ACOMPANHAMENTO</Text>
-            <View style={styles.toolCard}>
-              <View style={styles.toolIconContainer}>
-                <Text style={styles.toolIcon}>📈</Text>
-              </View>
-              <View style={styles.toolContent}>
-                <Text style={styles.toolName}>Dashboard do Professor</Text>
-                <Text style={styles.toolDescription}>
-                  Visualize o progresso da turma com gráficos e relatórios detalhados
-                </Text>
-                <Pressable style={styles.toolButton}>
-                  <Text style={styles.toolButtonText}>VER DASHBOARD</Text>
-                </Pressable>
-              </View>
-            </View>
-
-            <View style={styles.toolCard}>
-              <View style={styles.toolIconContainer}>
-                <Text style={styles.toolIcon}>🎯</Text>
-              </View>
-              <View style={styles.toolContent}>
-                <Text style={styles.toolName}>Metas Personalizadas</Text>
-                <Text style={styles.toolDescription}>
-                  Defina objetivos individuais para cada aluno
-                </Text>
-                <Pressable style={styles.toolButton}>
-                  <Text style={styles.toolButtonText}>CONFIGURAR</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-
-          {/* Seção IA */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>🤖 ASSISTENTE INTELIGENTE</Text>
-            <View style={styles.aiCard}>
-              <Image
-                source={require("./assets/robo.png")}
-                style={styles.aiImage}
-                resizeMode="contain"
-              />
-              <Text style={styles.aiTitle}>Converse com o Assistente</Text>
-              <Text style={styles.aiDescription}>
-                Tire dúvidas, peça sugestões de atividades e receba orientações pedagógicas em tempo real
-              </Text>
-              <Pressable style={styles.aiButton}>
-                <Text style={styles.aiButtonText}>INICIAR CONVERSA</Text>
+          {/* Menu de Navegação */}
+          <View style={styles.menuGrid}>
+            {menuItems.map((item, index) => (
+              <Pressable
+                key={index}
+                style={[styles.menuCard, { borderLeftColor: item.color }]}
+                onPress={item.onPress}
+              >
+                <Text style={styles.menuTitle}>{item.title}</Text>
+                <Text style={styles.menuDescription}>{item.description}</Text>
+                <Text style={[styles.menuArrow, { color: item.color }]}>→</Text>
               </Pressable>
-            </View>
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -310,140 +214,40 @@ function createStyles(isMobile) {
       opacity: 0.9,
       paddingHorizontal: isMobile ? 10 : 0,
     },
-    section: {
-      marginBottom: isMobile ? 35 : 50,
+    menuGrid: {
+      gap: isMobile ? 15 : 20,
+      marginTop: isMobile ? 20 : 30,
     },
-    sectionTitle: {
-      color: "#00d4ff",
+    menuCard: {
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      borderLeftWidth: 5,
+      borderRightWidth: 1,
+      borderTopWidth: 1,
+      borderBottomWidth: 1,
+      borderRightColor: "rgba(77, 77, 255, 0.2)",
+      borderTopColor: "rgba(77, 77, 255, 0.2)",
+      borderBottomColor: "rgba(77, 77, 255, 0.2)",
+      borderRadius: 15,
+      padding: isMobile ? 20 : 30,
+      marginBottom: 15,
+    },
+    menuTitle: {
+      color: "#ffffff",
       fontSize: isMobile ? 18 : 22,
       fontWeight: "bold",
-      marginBottom: 20,
-      letterSpacing: 1,
+      marginBottom: 10,
     },
-    toolCard: {
-      flexDirection: isMobile ? "column" : "row",
-      backgroundColor: "rgba(255, 255, 255, 0.05)",
-      borderWidth: 2,
-      borderColor: "rgba(77, 77, 255, 0.3)",
-      borderRadius: 15,
-      padding: isMobile ? 20 : 25,
-      marginBottom: 20,
-      alignItems: isMobile ? "center" : "flex-start",
-    },
-    toolIconContainer: {
-      marginRight: isMobile ? 0 : 20,
-      marginBottom: isMobile ? 15 : 0,
-    },
-    toolIcon: {
-      fontSize: isMobile ? 50 : 60,
-    },
-    toolContent: {
-      flex: 1,
-      alignItems: isMobile ? "center" : "flex-start",
-    },
-    toolName: {
-      color: "#ffffff",
-      fontSize: isMobile ? 18 : 20,
-      fontWeight: "bold",
-      marginBottom: 8,
-      textAlign: isMobile ? "center" : "left",
-    },
-    toolDescription: {
-      color: "#ffffff",
-      fontSize: isMobile ? 14 : 15,
-      lineHeight: isMobile ? 20 : 22,
-      opacity: 0.8,
-      marginBottom: 15,
-      textAlign: isMobile ? "center" : "left",
-    },
-    toolButton: {
-      backgroundColor: "#00d4ff",
-      borderRadius: 20,
-      paddingVertical: isMobile ? 8 : 10,
-      paddingHorizontal: isMobile ? 18 : 22,
-    },
-    toolButtonText: {
-      color: "#0a0a2e",
-      fontSize: isMobile ? 12 : 13,
-      fontWeight: "bold",
-      letterSpacing: 1,
-    },
-    gamesGrid: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: isMobile ? "center" : "space-between",
-      gap: isMobile ? 15 : 20,
-    },
-    gameCard: {
-      backgroundColor: "rgba(255, 255, 255, 0.05)",
-      borderWidth: 2,
-      borderColor: "rgba(77, 77, 255, 0.3)",
-      borderRadius: 15,
-      padding: isMobile ? 20 : 25,
-      width: isMobile ? "100%" : "47%",
-      maxWidth: isMobile ? 400 : undefined,
-      alignItems: "center",
-    },
-    gameIcon: {
-      fontSize: isMobile ? 50 : 60,
-      marginBottom: 12,
-    },
-    gameName: {
-      color: "#ffffff",
-      fontSize: isMobile ? 16 : 18,
-      fontWeight: "bold",
-      marginBottom: 8,
-      textAlign: "center",
-    },
-    gameLevel: {
-      color: "#00d4ff",
-      fontSize: isMobile ? 13 : 14,
-      textAlign: "center",
-    },
-    aiCard: {
-      backgroundColor: "rgba(0, 212, 255, 0.1)",
-      borderWidth: 2,
-      borderColor: "#00d4ff",
-      borderRadius: 20,
-      padding: isMobile ? 25 : 35,
-      alignItems: "center",
-    },
-    aiImage: {
-      width: isMobile ? 120 : 150,
-      height: isMobile ? 120 : 150,
-      marginBottom: 20,
-    },
-    aiTitle: {
-      color: "#ffffff",
-      fontSize: isMobile ? 22 : 26,
-      fontWeight: "bold",
-      marginBottom: 12,
-      textAlign: "center",
-    },
-    aiDescription: {
+    menuDescription: {
       color: "#ffffff",
       fontSize: isMobile ? 14 : 16,
       lineHeight: isMobile ? 20 : 24,
-      opacity: 0.9,
-      marginBottom: 25,
-      textAlign: "center",
-      paddingHorizontal: isMobile ? 10 : 20,
+      opacity: 0.8,
+      marginBottom: 15,
     },
-    aiButton: {
-      backgroundColor: "#00d4ff",
-      borderRadius: 25,
-      paddingVertical: isMobile ? 12 : 15,
-      paddingHorizontal: isMobile ? 25 : 35,
-      shadowColor: "#00d4ff",
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.5,
-      shadowRadius: 10,
-    },
-    aiButtonText: {
-      color: "#0a0a2e",
-      fontSize: isMobile ? 14 : 16,
+    menuArrow: {
+      fontSize: isMobile ? 24 : 28,
       fontWeight: "bold",
-      letterSpacing: 2,
+      alignSelf: "flex-end",
     },
   });
 }
